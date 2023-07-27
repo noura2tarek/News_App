@@ -21,7 +21,7 @@ void main() async{
 
 class MyApp extends StatelessWidget {
  final bool? issDark;
-  MyApp(this.issDark);
+  const MyApp(this.issDark);
 
   @override
   Widget build(BuildContext context) {
