@@ -6,7 +6,7 @@ import 'package:news_app/Shared/Bloc/states.dart';
 import 'package:news_app/Shared/Components/components.dart';
 
 class NewsLayout extends StatelessWidget {
-  const NewsLayout({Key? key}) : super(key: key);
+  NewsLayout({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,17 @@ class NewsLayout extends StatelessWidget {
         var cubit = NewsCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: Text('News App', style: Theme.of(context).appBarTheme.titleTextStyle),
+            title: Text('News App',
+                style: TextStyle(
+                  color: NewsCubit.get(context).isDark
+                      ? Colors.white
+                      : Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                )),
             actions: [
               IconButton(
-                onPressed: (){
+                onPressed: () {
                   navigateTo(context: context, widget: SearchScreen());
                 },
                 icon: const Icon(
@@ -27,8 +34,8 @@ class NewsLayout extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: (){
-                   cubit.changeMode();
+                onPressed: () {
+                  cubit.changeMode(context: context);
                 },
                 icon: const Icon(
                   Icons.brightness_4,
@@ -38,9 +45,9 @@ class NewsLayout extends StatelessWidget {
           ),
           body: cubit.screens[cubit.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
-
+            key: key,
             currentIndex: cubit.currentIndex,
-            onTap: (int index){
+            onTap: (int index) {
               cubit.changeIndex(index);
             },
             items: const [
@@ -53,14 +60,11 @@ class NewsLayout extends StatelessWidget {
                 label: "Sports",
               ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.science_outlined),
-                  label: "Science",
+                icon: Icon(Icons.science_outlined),
+                label: "Science",
               ),
-
             ],
           ),
-
-
         );
       },
     );

@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/Shared/Bloc/cubit.dart';
 import 'package:news_app/web_view/web_view.dart';
 
 
@@ -25,8 +26,7 @@ import 'package:news_app/web_view/web_view.dart';
     bool isObsecure = false,
     void Function()? onTab,
 
-  }) {
-    return TextFormField(
+  }) => TextFormField(
       style: style ,
       keyboardType: type,
       controller: controller,
@@ -59,7 +59,6 @@ import 'package:news_app/web_view/web_view.dart';
       onFieldSubmitted: onSubmit,
       onChanged: onChange,
     );
-  }
 
    Widget buildArticleItem({required BuildContext context, required Map article}) {
     return InkWell(
@@ -102,10 +101,12 @@ import 'package:news_app/web_view/web_view.dart';
                         '${article['title']}',
                         maxLines: 5,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodySmall,
+                        style: TextStyle(
+                          color:  NewsCubit.get(context).isDark? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
+                        ),
+
                       ),
                     ),
                     const SizedBox(height: 8.0,),
@@ -154,8 +155,6 @@ import 'package:news_app/web_view/web_view.dart';
         }
     );
   }
-
-//    (Item['urlToImage'] ==null)? 'https://cdnsm5-ss12.sharpschool.com/UserFiles/Servers/Server_1023780/Image/News.jpg' : "${Item['urlToImage']}"
 
   void navigateTo({required BuildContext context, required Widget widget}) {
     Navigator.push(

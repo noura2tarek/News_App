@@ -7,7 +7,7 @@ ThemeData darkTheme = ThemeData(
   dividerTheme: DividerThemeData(
     color: Colors.grey[200],
   ),
-  inputDecorationTheme: const InputDecorationTheme(
+  inputDecorationTheme:  InputDecorationTheme(
     hintStyle: TextStyle(
       color: Colors.white,
     ),
@@ -25,7 +25,7 @@ ThemeData darkTheme = ThemeData(
   ),
   scaffoldBackgroundColor: HexColor('333739'),
 
-  textTheme: const TextTheme(
+  textTheme:  TextTheme(
       bodySmall: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 18.0,
@@ -33,12 +33,12 @@ ThemeData darkTheme = ThemeData(
       )
   ),
   appBarTheme: AppBarTheme(
-      titleTextStyle: const TextStyle(
+      titleTextStyle:  TextStyle(
         color: Colors.white,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
-      iconTheme: const IconThemeData(
+      iconTheme:  IconThemeData(
         color: Colors.white,
       ),
       backgroundColor: HexColor('333739'),
@@ -66,14 +66,14 @@ ThemeData lightTheme =  ThemeData(
   primarySwatch: Colors.indigo,
   primaryColor: Colors.indigo,
   scaffoldBackgroundColor: Colors.white,
-  textTheme: const TextTheme(
+  textTheme:  TextTheme(
     bodySmall: TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 18.0,
       color: Colors.black,
     ),
   ),
-  appBarTheme: const AppBarTheme(
+  appBarTheme:  AppBarTheme(
       titleSpacing: 16.0,
       titleTextStyle: TextStyle(
         color: Colors.black,
@@ -88,9 +88,9 @@ ThemeData lightTheme =  ThemeData(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark,
-      )
+      ),
   ),
-  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+  bottomNavigationBarTheme:  const BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
     showUnselectedLabels: true,
     showSelectedLabels: true,

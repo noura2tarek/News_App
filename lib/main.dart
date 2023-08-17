@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/Layout/news_layout.dart';
@@ -7,7 +6,6 @@ import 'package:news_app/Network/Remote/dio_helper.dart';
 import 'package:news_app/Shared/Bloc/cubit.dart';
 import 'package:news_app/Shared/Bloc/states.dart';
 import 'package:news_app/Styles/themes.dart';
-
 import 'Shared/bloc_observer.dart';
 
 void main() async{
@@ -16,12 +14,12 @@ void main() async{
   DioHelper.init();
   await CacheHelper.init();
   bool? isDarkTheme = CacheHelper.getBoolean(key: 'isDark');
-  runApp( MyApp(isDarkTheme));
+  runApp((MyApp(isDarkTheme)));
 }
 
 class MyApp extends StatelessWidget {
  final bool? issDark;
-  const MyApp(this.issDark);
+    MyApp(this.issDark);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,7 @@ class MyApp extends StatelessWidget {
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: NewsCubit.get(context).isDark? ThemeMode.dark : ThemeMode.light,
-            home: const NewsLayout(),
+            home: NewsLayout(),
 
           );
         },

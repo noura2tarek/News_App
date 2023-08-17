@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/Network/Local/cache_helper.dart';
@@ -6,10 +5,7 @@ import 'package:news_app/Network/Remote/dio_helper.dart';
 import 'package:news_app/Pages/business_screen.dart';
 import 'package:news_app/Pages/science_screen.dart';
 import 'package:news_app/Pages/sports_screen.dart';
-
 import 'package:news_app/Shared/Bloc/states.dart';
-import 'package:news_app/Shared/Components/components.dart';
-
 class NewsCubit extends Cubit<NewsStates>{
 NewsCubit() : super(NewsInitialState());
 
@@ -34,7 +30,7 @@ void changeIndex(int index){
   currentIndex = index;
   emit(NewsBottomNavState());
 }
-
+//method to get business data from api by using dio
 void getBusinessData (){
 
   emit(NewsGetBusinessLoadingState());
@@ -56,7 +52,7 @@ void getBusinessData (){
       }
   );
 }
-
+//method to get Science data from api
 void getScienceData (){
   emit(NewsGetScienceLoadingState());
   DioHelper.getHttp(
@@ -77,7 +73,7 @@ void getScienceData (){
       }
   );
 }
-
+//method to get Sports data from api
 void getSportsData (){
   emit(NewsGetSportsLoadingState());
   DioHelper.getHttp(
@@ -98,7 +94,7 @@ void getSportsData (){
       }
   );
 }
-
+//method to get Search data from api
 void getSearchData ({required String value}){
   emit(NewsGetSearchLoadingState());
   DioHelper.getHttp(
@@ -117,6 +113,7 @@ void getSearchData ({required String value}){
       }
   );
 }
+//method to get shared pref data to see the latest mode from api
 void setMode({ required bool? fromShared}) {
   if (fromShared != null) {
     isDark = fromShared;
@@ -129,7 +126,7 @@ void setMode({ required bool? fromShared}) {
   }
 }
 
-void changeMode () {
+void changeMode ({required BuildContext context}) {
     isDark = !isDark;
      CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value) {
       emit(NewsChangeModeState());
