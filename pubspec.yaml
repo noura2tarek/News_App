@@ -35,8 +35,10 @@ dependencies:
   conditional_builder_null_safety: ^0.0.6
   hexcolor: ^3.0.1
   shared_preferences: ^2.2.0
-  webview_flutter: ^4.2.2
-  flutter_phoenix: "^1.0.0"
+  webview_flutter: ^4.2.4
+  webview_universal: ^0.0.5
+  responsive_builder: ^0.7.0
+  desktop_window: ^0.4.0
   flutter:
     sdk: flutter
 

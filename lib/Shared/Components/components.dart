@@ -60,67 +60,76 @@ import 'package:news_app/web_view/web_view.dart';
       onChanged: onChange,
     );
 
-   Widget buildArticleItem({required BuildContext context, required Map article}) {
-    return InkWell(
-      onTap: (){
-        navigateTo(
-            context: context,
-            widget: WebViewScreen(
-              url: article['url'],
-        ));
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 141,
-              width: 140,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(10.0),
-                  image: const DecorationImage(
-                    image: AssetImage(
-                      'assets/images/news.jpg'
-                    ),
-                    fit: BoxFit.cover,
-                  )
+   Widget buildArticleItem({required BuildContext context, required Map article, required int index}) {
+    return Container(
+      color: NewsCubit.get(context).selectedItem == index && NewsCubit.get(context).isDesktop? Colors.grey[300] : null,
+      child: InkWell(
+        onTap: (){
+          if (!NewsCubit.get(context).isDesktop) {
+            navigateTo(
+               context: context,
+               widget: WebViewScreen(
+                url: article['url'],
+            ));
+          }
+
+          if(NewsCubit.get(context).isDesktop){
+            NewsCubit.get(context).selectItem(index);
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 141,
+                width: 140,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(10.0),
+                    image: const DecorationImage(
+                      image: AssetImage(
+                        'assets/images/news.jpg'
+                      ),
+                      fit: BoxFit.cover,
+                    )
+                ),
+
               ),
+              const SizedBox(width: 20.0,),
+              Expanded(
+                child: Container(
+                  height: 140,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '${article['title']}',
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: NewsCubit.get(context).setTitleTextColor(index),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
 
-            ),
-            const SizedBox(width: 20.0,),
-            Expanded(
-              child: Container(
-                height: 140,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        '${article['title']}',
-                        maxLines: 5,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color:  NewsCubit.get(context).isDark? Colors.white : Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
+                          ),
                         ),
-
                       ),
-                    ),
-                    const SizedBox(height: 8.0,),
-                    Text(
-                      '${article['publishedAt']}',
-                      style: const TextStyle(
-                        color: Colors.grey,
+                      const SizedBox(height: 8.0,),
+                      Text(
+                        '${article['publishedAt']}',
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -133,7 +142,7 @@ import 'package:news_app/web_view/web_view.dart';
           return ListView.separated(
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
-              return buildArticleItem(context: context, article: list[index]);
+              return buildArticleItem(context: context, article: list[index], index: index);
             },
             separatorBuilder: (context, index) =>
             const Divider(

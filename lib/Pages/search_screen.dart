@@ -26,11 +26,10 @@ class SearchScreen extends StatelessWidget {
               ),
               title:  Container(
                 decoration: BoxDecoration(
-                  color: cubit.isDark? Colors.grey[700]
+                  color: NewsCubit.get(context).isDark? Colors.grey[700]
                       : Colors.grey[200],
                   borderRadius: BorderRadiusDirectional.circular(6.0),
                 ),
-
                 padding: const EdgeInsetsDirectional.only(top: 3.0),
                 width: 300.0,
                 height: 44.0,
@@ -46,8 +45,6 @@ class SearchScreen extends StatelessWidget {
                     fillColor:  Theme.of(context).inputDecorationTheme.fillColor,
                     hintColor:  Theme.of(context).inputDecorationTheme.hintStyle?.color,
                     inputBorder: InputBorder.none,
-
-                    cursorColor: cubit.isDark? Colors.white : Theme.of(context).primaryColor,
                     validator: (String? value){
                       if(value!.isEmpty){
                         return ('search data must not be null');
