@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:news_app/Shared/Bloc/cubit.dart';
 import 'package:news_app/web_view/web_view.dart';
 
@@ -164,6 +165,41 @@ import 'package:news_app/web_view/web_view.dart';
         }
     );
   }
+//Show toast function
+void showToast({
+  required String message,
+  required ToastStates state,
+}) {
+  Fluttertoast.showToast(
+    msg: message,
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 3,
+    backgroundColor: chooseToastColor(state),
+    textColor: Colors.white,
+    fontSize: 16.0,
+  );
+}
+
+enum ToastStates { SUCCESS, WAENING, ERROR, NOTIFY }
+Color chooseToastColor(ToastStates state) {
+  late Color color;
+  switch (state) {
+    case ToastStates.SUCCESS:
+      color = Colors.green;
+      break;
+    case ToastStates.WAENING:
+      color = Colors.amber;
+      break;
+    case ToastStates.ERROR:
+      color = Colors.red;
+      break;
+    case ToastStates.NOTIFY:
+      color = Colors.grey;
+      break;
+  }
+  return color;
+}
 
   void navigateTo({required BuildContext context, required Widget widget}) {
     Navigator.push(

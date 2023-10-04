@@ -39,6 +39,8 @@ dependencies:
   webview_universal: ^0.0.5
   responsive_builder: ^0.7.0
   desktop_window: ^0.4.0
+  internet_connection_checker: ^1.0.0+1
+  fluttertoast: ^8.2.2
   flutter:
     sdk: flutter
 

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:news_app/Layout/news_layout.dart';
 import 'package:news_app/Network/Local/cache_helper.dart';
 import 'package:news_app/Network/Remote/dio_helper.dart';
 import 'package:news_app/Shared/Bloc/cubit.dart';
 import 'package:news_app/Shared/Bloc/states.dart';
+import 'package:news_app/Shared/Components/components.dart';
 import 'package:news_app/Styles/themes.dart';
 import 'Shared/bloc_observer.dart';
 
@@ -15,10 +17,17 @@ void main() async {
 //     DesktopWindow.setMinWindowSize(Size(400,400));
 //
 // }
+  //Add internet connection checker
+  bool result = await InternetConnectionChecker().hasConnection;
+  if(result == true) {
+   return;
+  } else {
+     showToast(message: 'No Internet Connection, check internet and try again', state: ToastStates.NOTIFY);
+  }
 
-  Bloc.observer = MyBlocObserver();
-  DioHelper.init();
   await CacheHelper.init();
+  DioHelper.init();
+  Bloc.observer = MyBlocObserver();
   bool? isDarkTheme = CacheHelper.getBoolean(key: 'isDark');
   runApp((MyApp(isDarkTheme)));
 }
