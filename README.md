@@ -1,10 +1,16 @@
-# news_app
+# simple_news_app
+A simple news app that shows the news of business, sports, and science in Egypt.
 
-A new Flutter project.
+Data of the news are from api. 
+Api used to access data from a web server by using Dio package.
+Light Theme and Dark Theme provided.
+The State Management used is cubit(Bloc).
+By clicking on the title of the news, the application goes to this description in it's web page by using webview_universal package.
 
-## Getting Started
+The used Apis:
+News Api : https://newsapi.org/v2/top-headlines?country=eg&category=business&apiKey=7c92828fc6864a23be554a121218f0db
+Search Api : https://newsapi.org/v2/everything?country=eg&category=business&apiKey=7c92828fc6864a23be554a121218f0db
 
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
