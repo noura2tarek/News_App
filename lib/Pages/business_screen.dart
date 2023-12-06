@@ -35,12 +35,12 @@ class BusinessScreen extends StatelessWidget {
                           child: Container(
                             height: double.infinity,
                             color: Colors.grey[300],
-                            padding: EdgeInsetsDirectional.all(20.0),
+                            padding: const EdgeInsetsDirectional.all(20.0),
                             child: Text(
                               NewsCubit.get(context).selectedItem == null
                                   ? ''
                                   : '${businessArticles[NewsCubit.get(context).selectedItem!]['title']}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 17.0,
                               ),
                             ),
@@ -51,7 +51,7 @@ class BusinessScreen extends StatelessWidget {
                 },
               );
             },
-            breakpoints: ScreenBreakpoints(
+            breakpoints: const ScreenBreakpoints(
               desktop: 610.0,
               watch: 300.0,
               tablet: 300.0,

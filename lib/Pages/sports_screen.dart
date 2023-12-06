@@ -34,12 +34,12 @@ class SportsScreen extends StatelessWidget {
                           child: Container(
                             height: double.infinity,
                             color: Colors.grey[300],
-                            padding: EdgeInsetsDirectional.all(20.0),
+                            padding: const EdgeInsetsDirectional.all(20.0),
                             child: Text(
                               NewsCubit.get(context).selectedItem == null
                                   ? ''
                                   : '${sportsArticles[NewsCubit.get(context).selectedItem!]['title']}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 17.0,
                               ),
                             ),

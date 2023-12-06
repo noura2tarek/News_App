@@ -39,7 +39,7 @@ class ScienceScreen extends StatelessWidget {
                               NewsCubit.get(context).selectedItem == null
                                   ? ''
                                   : '${scienceArticles[NewsCubit.get(context).selectedItem!]['title']}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 17.0,
                               ),
                             ),
@@ -50,7 +50,7 @@ class ScienceScreen extends StatelessWidget {
                 },
               );
             },
-            breakpoints: ScreenBreakpoints(
+            breakpoints: const ScreenBreakpoints(
               desktop: 610.0,
               watch: 300.0,
               tablet: 300.0,
